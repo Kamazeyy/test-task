@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Test task</title>
+  </head>
+  <body>
+    <textarea placeholder="write the text here" id="text"></textarea><br/>
+    <button onClick=func()>Click to get result</button>
+    <p id="result"></p>
+
+    <script>
+        function findUniqueLetter(word){
+            const signs = [".", ",", "!", "&", "?", "'", "\"", "\\", "/", "-", "+", "=", "\n"];
+
+            for(let j = 0; j < word.length; j++){
+                let isUnique = true;  
+
+                for(let i = j + 1; i < word.length; i++){
+                    if(word[j] == word[i]){
+                        isUnique = false;
+                        break;
+                    }
+                }
+
+                if(isUnique && !signs.includes(word[j])){
+                    return word[j];
+                }
+            }
+        }
+        
+        function notRepeatArr(word_arr){
+            const arrWithoutRepeat = []
+
+            for(let k = 0; k < word_arr.length; k++){
+                word = word_arr[k];
+
+                arrWithoutRepeat.push(findUniqueLetter(word));
+            }
+
+            return arrWithoutRepeat;
+        }
+        
+        function func(){
+        const text = document.getElementById("text").value
+
+        const word_arr = text.split(" ");
+        const letter = notRepeatArr(word_arr).join('');
+        
+        document.getElementById("result").innerHTML  = "result: " + findUniqueLetter(letter);
+        }
+    </script>
+  </body>
+</html>
